@@ -1,11 +1,19 @@
+import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
+import { selectUser } from "../../redux/auth/selectors";
 
 const PublicRoute = () => {
-    return (
-        <>
-            <Outlet/>
-        </>
-    );
+    const { isLoggedIn, token } = useSelector(selectUser)
+    
+    if (!isLoggedIn && token) {
+        return <Loader/>
+    }
+
+    if (isLoggedIn && token) {
+        return <Navigate to="/contacts" />
+    }
+
+    return  <Outlet/>
 };
 
 export default PublicRoute;

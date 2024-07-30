@@ -1,10 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+const setHeaderToken = (token) => {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+}
+
 export const register = createAsyncThunk(
     'auth/register',
-    async (_, { rejectWithValue }) => {
+    async (user, { rejectWithValue }) => {
         try {
-            const { data } = await axios()
+            const { data } = await axios.post('/users/signup', user)
+            console.log('register data :>> ', data);
+            // setHeaderToken(data.token)
+            return data;
         } catch (error) {
             return rejectWithValue(error);
         }
@@ -13,9 +20,10 @@ export const register = createAsyncThunk(
 
 export const login = createAsyncThunk(
     'auth/login',
-    async (_, { rejectWithValue }) => {
+    async (user, { rejectWithValue }) => {
         try {
-            const { data } = await axios()
+            const { data } = await axios.post('/users/login', user)
+            console.log('login data :>> ', data);
         } catch (error) {
             return rejectWithValue(error);
         }
@@ -24,9 +32,9 @@ export const login = createAsyncThunk(
 
 export const logout = createAsyncThunk(
     'auth/logout',
-    async (_, { rejectWithValue }) => {
+    async (token, { rejectWithValue }) => {
         try {
-            const { data } = await axios()
+            const { data } = await axios.post('/users/logout', token)
         } catch (error) {
             return rejectWithValue(error);
         }
