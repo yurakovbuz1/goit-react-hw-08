@@ -8,10 +8,7 @@ export const contactsSlice = createSlice({
             items: [],
             loading: false,
             error: null,
-        },
-        filters: {
-            name: " ",
-        },
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -54,8 +51,6 @@ export const contactsSlice = createSlice({
                 state.contacts.loading = false;
                 state.contacts.error = payload;
             })
-        
-        
     }
 })
 
