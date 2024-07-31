@@ -1,10 +1,17 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import css from './Navbar.module.css'
 import clsx from "clsx";
+import { logout } from "../../redux/auth/operations";
 
 const Navbar = () => {
+
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch(logout())
+    }
 
     const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -15,13 +22,16 @@ const Navbar = () => {
                     <NavLink className={({isActive}) => {return clsx(css.navLink, isActive && css.isActive ) }} to='/'>Home</NavLink>
                     {isLoggedIn && <NavLink className={({isActive}) => {return clsx(css.navLink, isActive && css.isActive ) }} to='/contacts'>Phonebook</NavLink>}
                 </div>                
-                    {isLoggedIn && <NavLink className={css.navLink} to='/logout'>Logout</NavLink>}
                     {!isLoggedIn &&
                         <div className={css.loginNavigation}>
                             <NavLink className={css.navLink} to='/login'>Login</NavLink>
                             <NavLink className={css.navLink} to='/register'>Register</NavLink>
                         </div>
                     }                
+                {isLoggedIn &&
+                    <button type="button" className={css.logout} onClick={handleLogout}>Logout</button>
+                    // <NavLink className={css.navLink} to='/logout'>Logout</NavLink>
+                }
                 
             </nav>
         </>

@@ -20,6 +20,22 @@
   text-decoration: underline;
 }
 
+.logout {
+  background-color: transparent;
+  border: none;
+  color: black;
+  text-decoration: none;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.logout:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
 .mainNavigation,
 .loginNavigation {
   display: flex;
