@@ -5,6 +5,10 @@ const setHeaderToken = (token) => {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 }
 
+const clearHeaderToken = () => {
+    delete axios.defaults.headers.common['Authorization']
+}
+
 export const register = createAsyncThunk(
     'auth/register',
     async (user, { rejectWithValue }) => {
@@ -37,19 +41,21 @@ export const logout = createAsyncThunk(
     async (token, { rejectWithValue }) => {
         try {
             const { data } = await axios.post('/users/logout', token)
+            console.log('logout data :>> ', data);
         } catch (error) {
             return rejectWithValue(error.message);
         }
     }
 )
 
-// export const refreshUser = createAsyncThunk(
-//     'auth/refreshUser',
-//     async (_, { rejectWithValue }) => {
-//         try {
-//             const { data } = await axios()
-//         } catch (error) {
-//             return rejectWithValue(error);
-//         }
-//     }
-// )
+export const refreshUser = createAsyncThunk(
+    'auth/refreshUser',
+    async (_, { rejectWithValue }) => {
+        try {
+            const { data } = await axios()
+        } catch (error) {
+            clearHeaderToken();
+            return rejectWithValue(error);
+        }
+    }
+)

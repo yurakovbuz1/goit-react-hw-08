@@ -1,10 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { login, register } from "./operations";
-// import { selectError, selectLoading } from "../contacts/selectors";
-// import { useSelector } from "react-redux";
-
-// const isLoading = useSelector(selectLoading)
-// const error = useSelector(selectError)
 
 export const authSlice = createSlice({
     name: 'auth',

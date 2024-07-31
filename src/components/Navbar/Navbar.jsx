@@ -13,17 +13,15 @@ const Navbar = () => {
             <nav className={css.navbar}>
                 <div className={css.mainNavigation}>
                     <NavLink className={({isActive}) => {return clsx(css.navLink, isActive && css.isActive ) }} to='/'>Home</NavLink>
-                    {isLoggedIn && <NavLink className={css.navLink} to='/contacts'>Phonebook</NavLink>}
-                </div>
-                <div className={css.loginNavigation}>
+                    {isLoggedIn && <NavLink className={({isActive}) => {return clsx(css.navLink, isActive && css.isActive ) }} to='/contacts'>Phonebook</NavLink>}
+                </div>                
                     {isLoggedIn && <NavLink className={css.navLink} to='/logout'>Logout</NavLink>}
                     {!isLoggedIn &&
-                        <div>
+                        <div className={css.loginNavigation}>
                             <NavLink className={css.navLink} to='/login'>Login</NavLink>
                             <NavLink className={css.navLink} to='/register'>Register</NavLink>
                         </div>
-                    }
-                </div>
+                    }                
                 
             </nav>
         </>

@@ -18,9 +18,15 @@ export const addContact = createAsyncThunk(
     'contacts/addContact',
     async (newContact, thunkAPI) => {
         try {
-            const responseAddContact = await axios.post('/contacts', newContact)
-            return responseAddContact.data;
+            const token = thunkAPI.getState().auth.token;
+            if (token) {
+                axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                const responseAddContact = await axios.post('/contacts', newContact)
+                return responseAddContact.data;
+            }
+            // console.log("Axios :>>>", axios.defaults.headers);
         } catch (error) {                    
+            console.log("Axios :>>>", axios.defaults.headers);
             return  thunkAPI.rejectWithValue(error.message);
         }
     }
