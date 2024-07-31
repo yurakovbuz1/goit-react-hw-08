@@ -10,11 +10,11 @@ export const register = createAsyncThunk(
     async (user, { rejectWithValue }) => {
         try {
             const { data } = await axios.post('/users/signup', user)
+            setHeaderToken(data.token)
             console.log('register data :>> ', data);
-            // setHeaderToken(data.token)
             return data;
         } catch (error) {
-            return rejectWithValue(error);
+            return rejectWithValue(error.message);
         }
     }
 );
@@ -25,8 +25,9 @@ export const login = createAsyncThunk(
         try {
             const { data } = await axios.post('/users/login', user)
             console.log('login data :>> ', data);
+            return data;
         } catch (error) {
-            return rejectWithValue(error);
+            return rejectWithValue(error.message);
         }
     }
 );
@@ -37,7 +38,7 @@ export const logout = createAsyncThunk(
         try {
             const { data } = await axios.post('/users/logout', token)
         } catch (error) {
-            return rejectWithValue(error);
+            return rejectWithValue(error.message);
         }
     }
 )

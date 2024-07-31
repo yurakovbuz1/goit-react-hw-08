@@ -26,8 +26,8 @@ function App() {
       <Suspense fallback={<Loader/>}>
         <Navbar /> 
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route element={<PublicRoute/>}>
-            <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
           </Route>
