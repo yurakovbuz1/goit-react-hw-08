@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom'
 import PublicRoute from './components/PublicRoute/PublicRoute'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'
 import Loader from './components/Loader/Loader'
+import { refreshUser } from './redux/auth/operations'
 
 
 function App() {
@@ -15,11 +16,11 @@ function App() {
   const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'))
   const ContactsPage = lazy(() => import('./pages/ContactsPage/ContactsPage'))
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //       dispatch(refreshUser())
-  // }, [dispatch])
+  useEffect(() => {
+        dispatch(refreshUser())
+  }, [dispatch])
   
   return (
     <>
