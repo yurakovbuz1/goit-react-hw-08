@@ -1,10 +1,12 @@
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/operations";
 import css from './LoginPage.module.css'
+import * as Yup from 'yup'
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { nanoid } from "nanoid";
 
 const LoginPage = () => {
     const validationSchema = Yup.object().shape({
-        name: Yup.stsring().min(3, 'Minimum number of digits is 3').max(50, 'Maximum number of digits is 50').required('This field is required'),
         email: Yup.string().email('Invalid email format').min(3, 'Minimum number of digits is 3').max(50, 'Maximum number of digits is 50').required('Email address is required'),
         password: Yup.string().min(3, 'Minimum number of digits is 3').max(50, 'Maximum number of digits is 50').required('Password is required'),
     })
@@ -36,7 +38,7 @@ const LoginPage = () => {
                         <Field name='password' className={css.inputField}></Field>
                         <ErrorMessage name='password' component='p' className={css.errorMessage}/>
                     </div>
-                    <button type='submit' className={css.addContact}>Add Contact</button>
+                    <button type='submit' className={css.addContact}>Login</button>
                 </Form>
             </Formik>
         </>

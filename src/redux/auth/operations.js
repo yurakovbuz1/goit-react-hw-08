@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const setHeaderToken = (token) => {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -41,13 +42,13 @@ export const logout = createAsyncThunk(
     }
 )
 
-export const refreshUser = createAsyncThunk(
-    'auth/refreshUser',
-    async (_, { rejectWithValue }) => {
-        try {
-            const { data } = await axios()
-        } catch (error) {
-            return rejectWithValue(error);
-        }
-    }
-)
+// export const refreshUser = createAsyncThunk(
+//     'auth/refreshUser',
+//     async (_, { rejectWithValue }) => {
+//         try {
+//             const { data } = await axios()
+//         } catch (error) {
+//             return rejectWithValue(error);
+//         }
+//     }
+// )

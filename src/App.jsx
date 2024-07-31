@@ -1,7 +1,7 @@
 import './App.css'
 import { lazy, Suspense, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { refreshUser } from './redux/auth/operations'
+// import { refreshUser } from './redux/auth/operations'
 import Navbar from './components/Navbar/Navbar'
 import { Route, Routes } from 'react-router-dom'
 import PublicRoute from './components/PublicRoute/PublicRoute'
@@ -15,11 +15,11 @@ function App() {
   const RegisterPage = lazy(() => import('./pages/RegisterPage/RegisterPage'))
   const ContactsPage = lazy(() => import('./pages/ContactsPage/ContactsPage'))
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-        dispatch(refreshUser())
-  }, [dispatch])
+  // useEffect(() => {
+  //       dispatch(refreshUser())
+  // }, [dispatch])
   
   return (
     <>
