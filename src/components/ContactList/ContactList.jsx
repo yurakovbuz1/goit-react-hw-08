@@ -17,7 +17,7 @@ const ContactList = () => {
     };    
 
     return (
-        <>
+        <>            
             {contactsLoading && <Loader />}      
             {contactsError ? <h2>{contactsError}</h2> :                 
                 <ul className={css.contactList}>

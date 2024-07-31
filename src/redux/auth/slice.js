@@ -53,7 +53,8 @@ export const authSlice = createSlice({
             .addCase(refreshUser.fulfilled, (state, { payload }) => {
                 // isLoading = false;
                 // error = null;
-                state.user = payload.user;
+                state.user.name = payload.name;
+                state.user.email = payload.email;
                 state.isLoggedIn = true;
             })
     }
