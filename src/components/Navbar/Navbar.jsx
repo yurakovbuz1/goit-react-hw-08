@@ -32,7 +32,7 @@ const Navbar = () => {
                     }    
                     {isLoggedIn &&
                         <div className={css.welcomeContainer}>
-                            <p className={css.welcome}>Welcome, {user.user.name}!</p>
+                            <p className={css.welcome}>Welcome, {user.user.email}!</p>
                             <button type="button" className={css.logout} onClick={handleLogout}>Logout</button>
                         </div>
                     }

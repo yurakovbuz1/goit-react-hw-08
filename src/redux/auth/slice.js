@@ -11,51 +11,67 @@ export const authSlice = createSlice({
         token: null,  
         isLoggedIn: false,  
         isRefreshing: false,  
+        loading: false,
+        error: null,
     },
     extraReducers: (builder) => {
         builder
-        // REGISTER
-            // .addCase(register.pending, () => {
-            //     isLoading = true;
-            // })
+            // REGISTER
+            .addCase(register.pending, (state) => {
+                state.loading = true;
+            })
             .addCase(register.fulfilled, (state, { payload }) => {
-                // isLoading = false;
-                // error = null;
+                state.loading = false;
+                state.error = null;
                 state.user = payload.user;
                 state.token = payload.token;
                 state.isLoggedIn = true;
             })
-            // .addCase(register.rejected, (_, {payback}) => {
-            //     isLoading = false;
-            //     error = payback;
-            // })
-        // LOGIN
-            // .addCase(register.pending, () => {
-            //     isLoading = true;
-            // })
+            .addCase(register.rejected, (state, {payload}) => {
+                state.loading = false;
+                state.error = payload;
+            })
+            // LOGIN
+            .addCase(login.pending, (state) => {
+                state.loading = true;
+            })
             .addCase(login.fulfilled, (state, { payload }) => {
-                // isLoading = false;
-                // error = null;
+                state.loading = false;
+                state.error = null;
                 state.user = payload.user;
                 state.token = payload.token;
                 state.isLoggedIn = true;
             })
-            // .addCase(register.rejected, (_, {payback}) => {
-            //     isLoading = false;
-            //     error = payback;
-        // })
-        // LOGOUT
+            .addCase(login.rejected, (state, { payload }) => {
+                state.loading = false;
+                state.error = payload;
+            })
+            // LOGOUT
+            .addCase(logout.pending, (state) => {
+                state.loading = true;
+            })
             .addCase(logout.fulfilled, (state) => {
                 state.isLoggedIn = false;
                 state.token = null;
             })
-        // REFRESH
+            .addCase(logout.rejected, (state, {payload}) => {
+                state.loading = false;
+                state.error = payload;
+            })
+            // REFRESH
+            .addCase(refreshUser.pending, (state) => {
+                state.loading = true;
+            })
             .addCase(refreshUser.fulfilled, (state, { payload }) => {
-                // isLoading = false;
-                // error = null;
+                state.loading = false;
+                state.error = null;
                 state.user.name = payload.name;
                 state.user.email = payload.email;
                 state.isLoggedIn = true;
+            })
+            .addCase(refreshUser.rejected, (state, {payload}) => {
+                state.loading = false;
+                state.error = payload;
             })
     }
 });

@@ -1,25 +1,31 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import css from './RegisterPage.module.css'
 import * as Yup from 'yup'
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { nanoid } from "nanoid";
+import Loader from "../../components/Loader/Loader";
+import { selectAuthError, selectAuthLoading } from "../../redux/auth/selectors";
 
 const RegisterPage = () => {
     const validationSchema = Yup.object().shape({
         name: Yup.string().min(3, 'Minimum number of digits is 3').max(50, 'Maximum number of digits is 50').required('This field is required'),
         email: Yup.string().email('Invalid email format').min(3, 'Minimum number of digits is 3').max(50, 'Maximum number of digits is 50').required('Email address is required'),
         password: Yup.string().min(3, 'Minimum number of digits is 3').max(50, 'Maximum number of digits is 50').required('Password is required'),
-    })
+    });
+
+    const loading = useSelector(selectAuthLoading);
+    const error = useSelector(selectAuthError);
 
     const dispatch = useDispatch()
 
     const handleFormInput = (user) => {
         dispatch(register(user))
-    }
+    };
 
     return (
         <>
+            {loading && <Loader />} 
             <Formik
                 initialValues={{ name: '', email: '', password: '' }}
                 onSubmit={(values, actions) => {
@@ -47,6 +53,7 @@ const RegisterPage = () => {
                     <button type='submit' className={css.addContact}>Add Contact</button>
                 </Form>
             </Formik>
+            {error && <h2 className={css.requestError}>{error}</h2>}
         </>
     );
 };

@@ -45,3 +45,7 @@
 .errorMessage {
   color: red;
 }
+
+.requestError {
+  text-align: center;
+}
