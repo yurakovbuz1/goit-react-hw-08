@@ -28,7 +28,6 @@ export const login = createAsyncThunk(
         try {
             const { data } = await axios.post('/users/login', user)
             setHeaderToken(data.token)
-            
             return data;
         } catch (error) {
             return rejectWithValue(error.message);

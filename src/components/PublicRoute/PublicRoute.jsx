@@ -5,7 +5,6 @@ import Loader from "../Loader/Loader";
 
 const PublicRoute = () => {
     const { isLoggedIn, token } = useSelector(selectUser)
-    
     if (!isLoggedIn && token) {
         return <Loader/>
     }
