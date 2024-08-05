@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup'
-import { login } from '../../../redux/auth/operations';
+import { login } from '../../redux/auth/operations';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import css from './LoginForm.module.css'
 import { nanoid } from 'nanoid';

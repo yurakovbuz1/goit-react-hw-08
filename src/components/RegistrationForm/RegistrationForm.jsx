@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { nanoid } from "nanoid";
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../../../redux/auth/operations";
+import { register } from "../../redux/auth/operations";
 import css from './RegistrationForm.module.css'
 
 const RegistrationForm = () => {

@@ -1,8 +1,8 @@
 import css from './LoginPage.module.css'
-import Loader from "../../pages/components/Loader/Loader";
-import LoginForm from "../components/LoginForm/LoginForm";
+import Loader from "../../components/Loader/Loader";
 import { useSelector } from 'react-redux';
 import { selectAuthError, selectAuthLoading } from '../../redux/auth/selectors';
+import LoginForm from '../../components/LoginForm/LoginForm';
 
 const LoginPage = () => {
 

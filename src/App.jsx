@@ -3,10 +3,10 @@ import { lazy, Suspense, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { refreshUser } from './redux/auth/operations'
 import { Route, Routes } from 'react-router-dom'
-import RestrictedRoute from './pages/components/RestrictedRoute/RestrictedRoute'
-import PrivateRoute from './pages/components/PrivateRoute/PrivateRoute'
-import Loader from './pages/components/Loader/Loader'
-import Layout from './pages/components/Layout/Layout'
+import RestrictedRoute from './components/RestrictedRoute/RestrictedRoute'
+import PrivateRoute from './components/PrivateRoute/PrivateRoute'
+import Layout from './components/Layout/Layout'
+import Loader from './components/Loader/Loader'
 
 
 function App() {
