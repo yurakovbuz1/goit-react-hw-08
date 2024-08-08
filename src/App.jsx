@@ -24,17 +24,18 @@ function App() {
   return (
     <>
       <Suspense fallback={<Loader/>}>
-        <Layout /> 
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route element={<RestrictedRoute/>}>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegistrationPage />} />
-          </Route>
-          <Route element={<PrivateRoute/>}>
-            <Route path="/contacts" element={<ContactsPage />} />
-          </Route>      
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route element={<RestrictedRoute/>}>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegistrationPage />} />
+            </Route>
+            <Route element={<PrivateRoute/>}>
+              <Route path="/contacts" element={<ContactsPage />} />
+            </Route>      
+          </Routes>
+        </Layout> 
       </Suspense>
     </>
   )

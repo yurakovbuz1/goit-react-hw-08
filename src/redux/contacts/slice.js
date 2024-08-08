@@ -59,7 +59,7 @@ export const contactsSlice = createSlice({
             .addCase(logout.fulfilled, (state) => {
                 state.loading = false;
                 state.error = null;
-                state.items = null;
+                state.items = [];
             })
             .addCase(logout.rejected, (state, {payload}) => {
                 state.loading = false;

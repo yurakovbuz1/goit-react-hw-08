@@ -1,9 +1,10 @@
 import Appbar from "../AppBar/AppBar";
 
-const Layout = () => {
+const Layout = ({children}) => {
     return (
         <>
             <Appbar />
+            {children}
         </>
     )
 }
